@@ -29,8 +29,13 @@ class FlutterBluePlus {
     setLogLevel(logLevel);
   }
 
-  static final FlutterBluePlus _instance = FlutterBluePlus._();
+  static FlutterBluePlus _instance = FlutterBluePlus._();
   static FlutterBluePlus get instance => _instance;
+
+  // 런타임 동안 이전 연결 기기가 존재할 경우 해당 기기가 꺼져있을 때 연결 시도시 에러가 발생한다.
+  static reinitialize() {
+    _instance = new FlutterBluePlus._();
+  }
 
   /// Log level of the instance, default is all messages (debug).
   LogLevel _logLevel = LogLevel.debug;
